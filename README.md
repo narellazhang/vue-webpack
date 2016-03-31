@@ -16,3 +16,5 @@ git clone https://github.com/auth0/nodejs-jwt-authentication-sample.git
 ```
 node server.js
 ```
+
+此项目可作为vue+webpack开发的脚手架
