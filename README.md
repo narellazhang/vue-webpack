@@ -1,6 +1,6 @@
 #A-Vue.js-Authentication-App
 首先把项目克隆到本地
-运行安装命令，安装以来的包
+运行安装命令，安装依赖的包
 ```
 npm install
 ```
