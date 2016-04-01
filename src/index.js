@@ -52,6 +52,17 @@ router.map({
     component: function (resolve) {
       require(['./components/ZhihuDetail.vue'], resolve)
       } 
+  },
+  'news': {
+    component:  function (resolve) {
+      require(['./components/News.vue'], resolve)
+    }
+  },
+  'news/:id':{
+    name : 'Detail',
+    component: function (resolve) {
+      require(['./components/NewsDetail.vue'], resolve)
+      } 
   }
 })
 

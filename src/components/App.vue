@@ -5,7 +5,7 @@
           <li><a role="presentation" v-link="'/home'">Home</a></li>
           <li><a role="presentation" v-link="'/login'" v-if="!user.authenticated">Login</a></li>
           <li><a role="presentation" v-link="'/signup'" v-if="!user.authenticated">Sign Up</a></li>
-          <li><a role="presentation" v-link="'/secretquote'" v-if="user.authenticated">Secret</a></li>
+          <li><a role="presentation" v-link="'/news'" v-if="user.authenticated">News</a></li>
           <li><a role="presentation" v-link="'/zhihu'" v-if="user.authenticated">Zhihu</a></li>
           <li><a role="presentation" v-link="'/login'" v-if="user.authenticated" @click="logout()">Logout</a></li>
         </ul>
@@ -18,6 +18,7 @@
   <script>
   import auth from '../auth'
   require('../../node_modules/bootstrap/dist/css/bootstrap.css');
+  require('../assets/css/page.css');
   export default {
     data() {
       return {
