@@ -18,7 +18,7 @@
   <script>
   import auth from '../auth'
   require('../../node_modules/bootstrap/dist/css/bootstrap.css');
-  require('../assets/css/page.css');
+
   export default {
     data() {
       return {
