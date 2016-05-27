@@ -1,23 +1,37 @@
 <!-- src/components/App.vue -->
   <template>
-  <div class="container">
-   <ul class="nav nav-pills">
-          <li><a role="presentation" v-link="'/home'">Home</a></li>
-          <li><a role="presentation" v-link="'/login'" v-if="!user.authenticated">Login</a></li>
-          <li><a role="presentation" v-link="'/signup'" v-if="!user.authenticated">Sign Up</a></li>
-          <li><a role="presentation" v-link="'/news'" v-if="user.authenticated">News</a></li>
-          <li><a role="presentation" v-link="'/zhihu'" v-if="user.authenticated">Zhihu</a></li>
-          <li><a role="presentation" v-link="'/login'" v-if="user.authenticated" @click="logout()">Logout</a></li>
-        </ul>
-     
+ 
     
+      <nav class="bar bar-tab">
+        <a class="tab-item external" v-link="'/home'">
+          <span class="icon icon-home"></span>
+          <span class="tab-label">主页</span>
+        </a>
+        <a class="tab-item external"  v-link="'/statistics'">
+          <span class="icon icon-edit"></span>
+          <span class="tab-label">统计</span>
+
+        </a>
+
+        <a class="tab-item external"  v-if="user.authenticated" v-link="'/setting'">
+          <span class="icon icon-settings"></span>
+          <span class="tab-label">设置</span>
+        </a>
+          <a class="tab-item external"  v-if="!user.authenticated" v-link="'/login'">
+          <span class="icon icon-me"></span>
+          <span class="tab-label">登录</span>
+        </a>
+      </nav>
+    <div class="content">
       <router-view></router-view>
     </div>
   </template>
 
   <script>
+  require('../assets/css/index.css');
+
   import auth from '../auth'
-  require('../../node_modules/bootstrap/dist/css/bootstrap.css');
+
 
   export default {
     data() {
@@ -29,6 +43,7 @@
       logout() {
         auth.logout()
       }
+      
     }
   }
   </script>

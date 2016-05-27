@@ -27,7 +27,7 @@ router.map({
       require(['./components/Home.vue'], resolve)
     }
   },
-  'secretquote': {
+  '/secretquote': {
     component:  function (resolve) {
       require(['./components/SecretQuote.vue'], resolve)
     }
@@ -53,16 +53,26 @@ router.map({
       require(['./components/ZhihuDetail.vue'], resolve)
       } 
   },
-  'news': {
+  '/news': {
     component:  function (resolve) {
       require(['./components/News.vue'], resolve)
     }
   },
-  'news/:id':{
+  '/news/:id':{
     name : 'Detail',
     component: function (resolve) {
       require(['./components/NewsDetail.vue'], resolve)
       } 
+  },
+  '/setting':{
+    component:  function (resolve) {
+      require(['./components/Setting.vue'], resolve)
+      }
+  },
+  '/statistics':{
+    component:  function (resolve) {
+      require(['./components/Statistics.vue'], resolve)
+      }
   }
 })
 

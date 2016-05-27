@@ -3,7 +3,7 @@
 import {router} from '../index'
 
 // URL and endpoint constants
-const API_URL = 'http://localhost:3001/'
+const API_URL = 'http://localhost:3000/'
 const LOGIN_URL = API_URL + 'sessions/create/'
 const SIGNUP_URL = API_URL + 'users/'
 
