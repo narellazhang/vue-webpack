@@ -3,7 +3,7 @@
 
   <template>
     
-      
+      <h1>Get a Free Chuck Norris Quote!</h1>
       <button class="btn btn-primary" v-on:click="getQuote()">Get a Quote</button>
       <div class="quote-area" v-if="quote">
         <h2><blockquote>{{ quote }}</blockquote></h2>      

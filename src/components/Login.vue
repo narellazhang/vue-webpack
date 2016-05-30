@@ -1,30 +1,49 @@
  <!-- src/components/Login.vue -->
 
   <template>
-    <div class="col-sm-4 col-sm-offset-4">
-      <h2>Log In</h2>
-      <p>Log in to your account to get some great quotes.</p>
-      <div class="alert alert-danger" v-if="error">
-        <p>{{ error }}</p>
-      </div>
-      <div class="form-group">
-        <input 
-          type="text" 
-          class="form-control"
-          placeholder="Enter your username"
-          v-model="credentials.username"
-        >
-      </div>
-      <div class="form-group">
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Enter your password"
-          v-model="credentials.password"
-        >
-      </div>
-      <button class="btn btn-primary" @click="submit()">Access</button>
+    <header class="bar bar-nav">
+  <h1 class='title'>登录</h1>
+</header>
+<div class="content">
+  <div class="list-block">
+    <ul>
+      <!-- Text inputs -->
+      <li>
+        <div class="item-content">
+          <div class="item-media"><i class="icon icon-form-name"></i></div>
+          <div class="item-inner">
+            <div class="item-title label">账号</div>
+            <div class="item-input">
+              <input type="text" v-model="credentials.username" placeholder="Your name">
+            </div>
+          </div>
+        </div>
+      </li>
+     
+      <li>
+        <div class="item-content">
+          <div class="item-media"><i class="icon icon-form-password"></i></div>
+          <div class="item-inner">
+            <div class="item-title label">密码</div>
+            <div class="item-input">
+              <input type="password" v-model="credentials.password" placeholder="Password" class="">
+            </div>
+          </div>
+        </div>
+      </li>
+      
+      
+    
+    </ul>
+  </div>
+  <div class="content-block">
+    <div class="row">
+    <div class="col-50"><a href="#" class="button button-big button-fill button-success">登录</a></div>
+      <div class="col-50"><a href="#" class="button button-big button-fill">取消</a></div>
+      
     </div>
+  </div>
+</div>
   </template>
 
   <script>
@@ -49,7 +68,7 @@
         }
         // We need to pass the component's this context
         // to properly make use of http in the auth service
-        auth.login(this, credentials, 'secretquote')
+        auth.login(this, credentials, 'home')
       }
     }
 

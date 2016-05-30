@@ -4,6 +4,7 @@ var user = {
     update:'update user set name=?, account=? ,psw=? ,where id=?',
     delete: 'delete from user where id=?',
     queryById: 'select * from user where id=?',
+    queryByName: 'select * from user where name=?',
     queryAll: 'select * from user'
 };
 
