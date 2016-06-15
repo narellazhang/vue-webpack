@@ -8,16 +8,13 @@ npm install
 ```
 webpack-dev-server --inline --hot
 ```
-进入server目录，克隆另一个项目下来(This is a NodeJS API that supports username and password authentication with JWTs and has APIs that return Chuck Norris phrases)
+进入server目录，
 ```
-git clone https://github.com/auth0/nodejs-jwt-authentication-sample.git
+npm install
 ```
 进入此项目并运行
 ```
-node server.js
+npm start
 ```
 地址栏输入localhost:8080，就会看到内容了
 
-此项目除了使用了nodejs-jwt-authentication的接口外，还使用了获取儿童心理辅导文章列表和详情接口，还有日乎日报接口，浏览器跨域的情况下，News和zhihu这两个页面才有内容。
-
-可作为vue+webpack开发的脚手架
