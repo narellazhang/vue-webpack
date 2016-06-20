@@ -14,7 +14,7 @@
           <div class="item-inner">
             <div class="item-title label">账号</div>
             <div class="item-input">
-              <input type="text" v-model="credentials.username" placeholder="Your name">
+              <input type="text" v-model="name" placeholder="Your name">
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
           <div class="item-inner">
             <div class="item-title label">密码</div>
             <div class="item-input">
-              <input type="password" v-model="credentials.password" placeholder="Password" class="">
+              <input type="password" v-model="psw" placeholder="Password" class="">
             </div>
           </div>
         </div>
@@ -38,8 +38,8 @@
   </div>
   <div class="content-block">
     <div class="row">
-    <div class="col-50"><a href="#" class="button button-big button-fill button-success">登录</a></div>
-      <div class="col-50"><a href="#" class="button button-big button-fill">取消</a></div>
+    <div class="col-50"><a href="javascript:void(0);" class="button button-big button-fill button-success" v-on:click="submit">登录</a></div>
+      <div class="col-50"><a href="javascript:void(0);" class="button button-big button-fill">取消</a></div>
       
     </div>
   </div>
@@ -54,8 +54,8 @@
         // We need to initialize the component with any
         // properties that will be used in it
         credentials: {
-          username: '',
-          password: ''
+          name: '',
+          psw: ''
         },
         error: ''
       }
@@ -63,12 +63,13 @@
     methods: {
       submit() {
         var credentials = {
-          username: this.credentials.username,
-          password: this.credentials.password
-        }
+          name: this.name,
+          psw: this.psw
+        };
         // We need to pass the component's this context
         // to properly make use of http in the auth service
-        auth.login(this, credentials, 'home')
+        auth.login(this, credentials, 'home');
+        return false;
       }
     }
 

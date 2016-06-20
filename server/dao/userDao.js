@@ -151,7 +151,7 @@ module.exports = {
 				if (_.isEmpty(result)) {
 					jsonWrite(res, {
 						code: '-1',
-						msg: '改用户不存在'
+						msg: '该用户不存在'
 					});
 					return;
 				}
@@ -160,7 +160,12 @@ module.exports = {
 				});
 				console.log("user====" + user);
 				if (!user) {
-					return res.status(401).send("The username or password don't match1");
+					
+					jsonWrite(res, {
+						code: '401',
+						msg: '账号密码不相符'
+					});
+					return;
 				}
 				res.status(201).send({
 					id_token: createToken(result[user])
