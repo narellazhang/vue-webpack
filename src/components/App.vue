@@ -5,7 +5,7 @@
       <nav class="bar bar-tab">
         <a class="tab-item external" v-link="'/home'">
           <span class="icon icon-home"></span>
-          <span class="tab-label">主页</span>
+          <span class="tab-label">账本</span>
         </a>
         <a class="tab-item external"  v-link="'/statistics'">
           <span class="icon icon-edit"></span>
@@ -13,9 +13,9 @@
 
         </a>
 
-        <a class="tab-item external"  v-if="user.authenticated" v-link="'/setting'">
-          <span class="icon icon-settings"></span>
-          <span class="tab-label">设置</span>
+        <a class="tab-item external"  v-if="user.authenticated" v-on:click="logout()">
+          <span class="icon icon-emoji"></span>
+          <span class="tab-label">退出</span>
         </a>
           <a class="tab-item external"  v-if="!user.authenticated" v-link="'/login'">
           <span class="icon icon-me"></span>

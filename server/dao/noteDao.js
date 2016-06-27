@@ -61,7 +61,7 @@ module.exports = {
 				if(result.affectedRows > 0) {
 					result = {
 						code: 200,
-						msg:'修改成功'
+						msg:'删除成功'
 					};   
 				} else {
 					result = {
@@ -88,7 +88,7 @@ module.exports = {
 				if(result.affectedRows > 0) {
 					result = {
 						code: 200,
-						msg:'删除成功'
+						msg:'修改成功'
 					};
 				} else {
 					result = void 0;

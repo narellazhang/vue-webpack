@@ -7,8 +7,8 @@ var _ = require('lodash'),
 	config = require('../conf/config'),
 	jwt = require('jsonwebtoken');
 
-function createToken(user) {
-	return jwt.sign(_.omit(user, 'password'), config.secret, {
+function createToken(name) {
+	return jwt.sign({userName:name}, config.secret, {
 		expiresIn: 60 * 60 * 5
 	});
 }
@@ -38,14 +38,15 @@ module.exports = {
 						if (result) {
 							result = {
 								code: 200,
-								msg: '注册成功'
+								msg: '注册成功',
+								id_token: createToken(param.name)
 							};
 						}
 						// 以json形式，把操作结果返回给前台页面
-						res.status(201).send({
+						/*res.status(201).send({
 						    id_token: createToken(param)
-						});
-						
+						});*/
+
 						// 释放连接 
 						connection.release();
 					});
@@ -92,18 +93,9 @@ module.exports = {
 			return;
 		}
 
-		pool.getConnection(function(err, connection) {
+		/*pool.getConnection(function(err, connection) {
 			connection.query($sql.update, [param.name, param.account, param.psw, +param.id], function(err, result) {
 				// 使用页面进行跳转提示
-				/*if(result.affectedRows > 0) {
-					res.render('suc', {
-						result: result
-					}); // 第二个参数可以直接在jade中使用
-				} e(lse {
-									res.render('fail',  {
-										result: result
-									});
-								}*/
 				if (result.affectedRows > 0) {
 					result = {
 						code: 200,
@@ -116,7 +108,35 @@ module.exports = {
 				connection.release();
 			});
 		});
-
+*/		pool.getConnection(function(err, connection) {
+			connection.query($sql.queryByName, param.name, function(err, result) {
+				if (_.isEmpty(result)) {
+					
+					connection.query($sql.update, [param.name, param.account, param.psw, +param.id], function(err, result) {
+						// 使用页面进行跳转提示
+						if (result.affectedRows > 0) {
+							result = {
+								code: 200,
+								msg: '修改成功'
+							};
+						} else {
+							result = void 0;
+						}
+						jsonWrite(res, result);
+						connection.release();
+					});
+							
+				} else {
+					result = {
+						code: -1,
+						msg: '用户名已存在'
+					};
+					jsonWrite(res, result);
+					// 释放连接 
+					connection.release();
+				}
+			});
+		});
 	},
 	queryById: function(req, res, next) {
 		var id = +req.query.id; // 为了拼凑正确的sql语句，这里要转下整数
@@ -160,16 +180,23 @@ module.exports = {
 				});
 				console.log("user====" + user);
 				if (!user) {
-					
+
 					jsonWrite(res, {
 						code: '401',
 						msg: '账号密码不相符'
 					});
 					return;
 				}
-				res.status(201).send({
+				/*res.status(201).send({
 					id_token: createToken(result[user])
+				});*/
+			
+				jsonWrite(res, {
+					code: '200',
+					msg: '登录成功',
+					id_token: createToken(result[user].name)
 				});
+
 				connection.release();
 			});
 		});
