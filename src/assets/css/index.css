@@ -1,3 +1,6 @@
 .bar-tab .tab-item.v-link-active{
 	color: #0894ec;
 }
+.list-block{
+	margin:0;
+}

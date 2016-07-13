@@ -2,12 +2,6 @@
 
 import Vue from 'vue'
 import App from './components/App.vue'
-/*import Home from './components/Home.vue'
-import SecretQuote from './components/SecretQuote.vue'
-import Signup from './components/Signup.vue'
-import Login from './components/Login.vue'
-import Zhihu from './components/Zhihu.vue'
-import Detail from './components/Detail.vue'*/
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
@@ -72,6 +66,11 @@ router.map({
   '/statistics':{
     component:  function (resolve) {
       require(['./components/Statistics.vue'], resolve)
+      }
+  },
+  '/addnote':{
+    component:  function (resolve) {
+      require(['./components/Note.vue'], resolve)
       }
   }
 })

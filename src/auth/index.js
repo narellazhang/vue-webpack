@@ -22,7 +22,8 @@ export default {
         return;
       }
       console.log(data);
-      localStorage.setItem('id_token', data.id_token)
+      localStorage.setItem('id_token', data.id_token);
+      localStorage.setItem('user_id', data.user_id);
 
       this.user.authenticated = true
 
@@ -54,6 +55,7 @@ export default {
   // To log out, we just need to remove the token
   logout() {
     localStorage.removeItem('id_token')
+    localStorage.removeItem('user_id')
     this.user.authenticated = false
   },
 

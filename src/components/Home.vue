@@ -6,22 +6,40 @@
      <header class="bar bar-nav">
       <h1 class="title">账单条目</h1>
     </header>
-    <div class="list-block media-list" v-if="items">
-      <ul>
-        <li v-for="item in items">
-         <a href="#" class="item-link item-content" v-on:click="delNote({{item.id}})">
-        <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
-        <div class="item-inner">
-          <div class="item-title-row">
-            <div class="item-title">{{ item.create_time.substr(0,10) }}</div>
-            <div class="item-after">￥{{ item.money }}</div>
+    <div class="content">
+      <div class="list-block media-list" v-if="items">
+        <ul>
+          <li v-for="item in items">
+           <a href="#" class="item-link item-content" v-on:click="delNote(item.id)">
+          <div class="item-media"><img src="{{'/src/assets/img/Fruit-'+item.tag_id+'.png'}}" style='width: 4rem;'></div>
+         <!--  http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg -->
+          <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-title">{{ item.create_time.substr(0,10) }}</div>
+              <div class="item-after">￥{{ item.money }}</div>
+            </div>
+            <div class="item-subtitle">{{ item.tag_name }}</div>
+            <div class="item-text">{{ item.remark }}</div>
           </div>
-          <div class="item-subtitle">{{ item.tag_name }}</div>
-          <div class="item-text">{{ item.remark }}</div>
-        </div>
-      </a>
+        </a>
+          </li>
+        </ul> 
+      </div>
+      <div class="list-block media-list" v-if="!items">
+        <ul>
+           <li>
+          <div class="item-content">
+            <div class="item-media"><img src="/src/assets/img/Fruit-20.png" style='width: 2.2rem;'></div>
+            <div class="item-inner">
+              <div class="item-title-row">
+                <div class="item-title">暂无数据</div>
+              </div>
+             
+            </div>
+          </div>
         </li>
-      </ul> 
+        </ul> 
+      </div>
     </div>
   
   </template>
@@ -40,10 +58,16 @@
     methods: {
       getQuote() {
         var params = {
-          'url':'notes/queryAll'
+          'url':'notes/query',
+          'data':{
+            'user_id':localStorage.getItem('user_id')
+          }
         };
         API.GetRequest(this,params,(data) => {
-          this.items = data;
+          if(data&&data.length>0){
+            this.items = data;
+          }
+          
 
         });
          

@@ -7,7 +7,7 @@
           <span class="icon icon-home"></span>
           <span class="tab-label">账本</span>
         </a>
-        <a class="tab-item external"  v-link="'/statistics'">
+        <a class="tab-item external"  v-link="'/addnote'">
           <span class="icon icon-edit"></span>
           <span class="tab-label">统计</span>
 

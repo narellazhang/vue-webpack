@@ -194,6 +194,7 @@ module.exports = {
 				jsonWrite(res, {
 					code: '200',
 					msg: '登录成功',
+					user_id:result[user].id,
 					id_token: createToken(result[user].name)
 				});
 
