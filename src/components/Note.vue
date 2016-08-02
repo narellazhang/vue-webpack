@@ -26,12 +26,38 @@
           <div class="item-inner">
             <div class="item-title label">类型：</div>
             <div class="item-input">
-              <input type="text" v-model="type" id="picker">
+              <!-- <input type="text" v-model="type" id="picker"> -->
+              <select name="type" v-model="type" >
+                <option value="0">支出</option>
+                <option value="1">收入</option>             
+              </select>
             </div>
           </div>
         </div>
       </li>
-       <li>
+       
+      <li>
+        <div class="item-content">
+          <div class="item-media"><i class="icon icon-form-password"></i></div>
+          <div class="item-inner">
+            <div class="item-title label">标签：</div>
+            <div class="item-input">
+              <!-- <input type="text" v-model="type" id="picker"> -->
+              <select name="tag" v-model="tag_id" v-show="type==0">
+                <option value="1">生活必需品</option>
+                <option value="2">娱乐</option>
+                <option value="3">衣服鞋包</option>             
+              </select>
+              <select name="tag" v-model="tag_id" v-show="type==1">
+                <option value="1">工资</option>
+                <option value="2">投资理财</option>
+                <option value="3">意外收入</option>             
+              </select>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
         <div class="item-content">
           <div class="item-media"><i class="icon icon-form-password"></i></div>
           <div class="item-inner">
@@ -75,10 +101,23 @@
           }
         ]
       });
+      
+
       return {
           money: '',
           type: '',
-          remark: '' 
+          remark: '',
+          tag_id:'',
+          tagOut : {
+            '1':'生活必需品',
+            '2':'娱乐',
+            '3':'衣服鞋包'
+          },
+          tagIn:{
+            '1':'工资',
+            '2':'投资理财',
+            '3':'意外收入'
+          }
       }
     },
     methods: {
@@ -89,7 +128,9 @@
             'user_id':localStorage.getItem('user_id'),
             'money':this.money,
             'type':this.type,
-            'remark':this.remark
+            'remark':this.remark,
+            'tag_id':this.tag_id,
+            'tag_name':this.type?this.tagIn[this.tag_id]:this.tagOut[this.tag_id]
           }
         };
         API.PostRequest(this,params,(data) => {

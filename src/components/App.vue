@@ -9,7 +9,7 @@
         </a>
         <a class="tab-item external"  v-link="'/addnote'">
           <span class="icon icon-edit"></span>
-          <span class="tab-label">统计</span>
+          <span class="tab-label">记账</span>
 
         </a>
 
