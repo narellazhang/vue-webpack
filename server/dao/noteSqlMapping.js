@@ -5,6 +5,7 @@ var note = {
     delete: 'delete from note where id=?',
     queryById: 'select * from note where id=?',
     queryByUser:'select * from note where user_id=?',
+    queryByType:'select * from note where user_id=? and type=?',
     queryAll: 'select * from note'
 };
 module.exports = note;

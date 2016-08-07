@@ -106,10 +106,35 @@
           }
       }
     },
+    route:{
+      data (transition){
+        var user_id = localStorage.getItem('user_id');
+        if(!user_id){
+           alert('登陆失效，请重新登陆');
+           router.go('login')
+
+        }
+        var params = {
+          'url':'notes/queryById',
+          'data':{
+            'id':transition.to.params.id
+          }
+        };
+        API.GetRequest(this,params,(data) => {
+          if(data&&data.length>0){
+            this.money = data[0].money;
+            this.type = data[0].type;
+            this.remark = data[0].remark;
+            this.tag_id = data[0].tag_id;
+            
+          } 
+        });
+      }
+    },
     methods: {
       submit() {
         var params = {
-          'url':'notes/addNote',
+          'url':'notes/updateNote',
           'data':{
             'user_id':localStorage.getItem('user_id'),
             'money':this.money,
@@ -131,7 +156,7 @@
       },
       goBack(){
         router.go(window.history.back())
-      },
+      }
     }
 
   }

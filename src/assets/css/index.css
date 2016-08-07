@@ -4,3 +4,15 @@
 .list-block{
 	margin:0;
 }
+.text-success{
+	color: #4cd964!important;
+}
+.text-danger{
+	color: #f6383a!important;
+}
+.text-info{
+	color: #0894ec!important;
+}
+.text-warning{
+	color: #ff6600!important;
+}

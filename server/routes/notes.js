@@ -18,6 +18,9 @@ router.get('/queryById', function(req, res, next) {
 router.get('/query', function(req, res, next) {
 	noteDao.queryByUser(req, res, next);
 });
+router.get('/queryByType', function(req, res, next) {
+	noteDao.queryByType(req, res, next);
+});
 router.get('/deleteNote', function(req, res, next) {
 	noteDao.delete(req, res, next);
 });

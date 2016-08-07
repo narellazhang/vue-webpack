@@ -47,7 +47,8 @@
   </template>
 
   <script>
-  import auth from '../auth'
+  import auth from '../auth/api'
+  import {router} from '../index'
   export default {
     data() {
       return {

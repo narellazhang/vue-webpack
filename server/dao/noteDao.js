@@ -25,8 +25,8 @@ module.exports = {
 			// 获取前台页面传过来的参数
 			
 			var param =  req.body;
-			param.create_time = new Date();
-			param.update_time = null;
+			param.create_time = (new Date().getTime())/1000;
+			param.update_time = 0;
  			console.log(param);
  			
 			// 建立连接，向表中插入值
@@ -82,7 +82,7 @@ module.exports = {
 			jsonWrite(res, undefined);
 			return; 
 		}
- 		param.update_time = new Date();
+ 		param.update_time = (new Date().getTime())/1000;
 		pool.getConnection(function(err, connection) {
 			connection.query($sql.update, [param.user_id,param.type, param.money,param.update_time,param.remark,param.tag_id, param.tag_name,+param.id], function(err, result) {
 				if(result.affectedRows > 0) {
@@ -113,6 +113,17 @@ module.exports = {
 		var user_id = +req.query.user_id; // 为了拼凑正确的sql语句，这里要转下整数
 		pool.getConnection(function(err, connection) {
 			connection.query($sql.queryByUser, user_id, function(err, result) {
+				jsonWrite(res, result);
+				connection.release();
+ 
+			});
+		});
+	},
+	queryByType: function (req, res, next) {
+		var type = +req.query.type; // 为了拼凑正确的sql语句，这里要转下整数
+		var user_id = +req.query.user_id;
+		pool.getConnection(function(err, connection) {
+			connection.query($sql.queryByType,[user_id,type],function(err, result) {
 				jsonWrite(res, result);
 				connection.release();
  

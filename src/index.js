@@ -6,7 +6,7 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.use(VueRouter)
-import auth from './auth'
+import auth from './auth/api'
 
 // Check the users auth status when the app starts
 auth.checkAuth()
@@ -19,6 +19,18 @@ router.map({
   '/home': {
     component: function (resolve) {
       require(['./components/Home.vue'], resolve)
+    }
+  },
+  '/note/:id': {
+    name:'NoteDetail',
+    component: function (resolve) {
+      require(['./components/NoteDetail.vue'], resolve)
+    }
+  },
+  '/noteUpdate/:id': {
+    name:'NoteUpdate',
+    component: function (resolve) {
+      require(['./components/NoteUpdate.vue'], resolve)
     }
   },
   '/secretquote': {

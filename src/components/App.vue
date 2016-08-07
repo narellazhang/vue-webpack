@@ -30,7 +30,7 @@
   <script>
   require('../assets/css/index.css');
 
-  import auth from '../auth'
+  import auth from '../auth/api'
 
 
   export default {

@@ -4,6 +4,8 @@ module.exports = {
 		user: 'root',
 		password: 'mysql',
 		database:'myapp', // 前面建的user表位于这个数据库中
-		port: 3306
+		port: 3306,
+		dateStrings:true,
+		timezone:'CST'
 	}
 };
