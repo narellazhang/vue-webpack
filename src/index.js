@@ -33,9 +33,14 @@ router.map({
       require(['./components/NoteUpdate.vue'], resolve)
     }
   },
-  '/secretquote': {
+  '/tag': {
     component:  function (resolve) {
-      require(['./components/SecretQuote.vue'], resolve)
+      require(['./components/TagList.vue'], resolve)
+    }
+  },
+    '/addTag': {
+    component:  function (resolve) {
+      require(['./components/Tag.vue'], resolve)
     }
   },
   '/login': {

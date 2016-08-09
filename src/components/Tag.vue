@@ -2,23 +2,12 @@
 
   <template>
     <header class="bar bar-nav">
-  <h1 class='title'>记账</h1>
+  <h1 class='title'>账单标签</h1>
 </header>
 <div class="content">
   <div class="list-block">
     <ul>
       <!-- Text inputs -->
-      <li>
-        <div class="item-content">
-          <div class="item-media"><i class="icon icon-form-name"></i></div>
-          <div class="item-inner">
-            <div class="item-title label">金额：</div>
-            <div class="item-input">
-              <input type="text" v-model="money" placeholder="">
-            </div>
-          </div>
-        </div>
-      </li>
      
       <li>
         <div class="item-content">
@@ -42,35 +31,11 @@
           <div class="item-inner">
             <div class="item-title label">标签：</div>
             <div class="item-input">
-              <!-- <input type="text" v-model="type" id="picker"> -->
-              <select name="tag" v-model="tag_id" v-show="type==0">
-                <option value="1">生活必需品</option>
-                <option value="2">娱乐</option>
-                <option value="3">衣服鞋包</option>             
-              </select>
-              <select name="tag" v-model="tag_id" v-show="type==1">
-                <option value="1">工资</option>
-                <option value="2">投资理财</option>
-                <option value="3">意外收入</option>             
-              </select>
+             <input type="text" v-model="tag_name" placeholder="" class="">
             </div>
           </div>
         </div>
       </li>
-      <li>
-        <div class="item-content">
-          <div class="item-media"><i class="icon icon-form-password"></i></div>
-          <div class="item-inner">
-            <div class="item-title label">备注：</div>
-            <div class="item-input">
-              <input type="text" v-model="remark" placeholder="" class="">
-            </div>
-          </div>
-        </div>
-      </li>
-      
-      
-    
     </ul>
   </div>
   <div class="content-block">
@@ -90,20 +55,8 @@
   export default {
     data() {
       return {
-          money: '',
           type: '',
-          remark: '',
-          tag_id:'',
-          tagOut : {
-            '1':'生活必需品',
-            '2':'娱乐',
-            '3':'衣服鞋包'
-          },
-          tagIn:{
-            '1':'工资',
-            '2':'投资理财',
-            '3':'意外收入'
-          }
+          tab_name: ''
       }
     },
     methods: {
@@ -115,14 +68,11 @@
 
         }
         var params = {
-          'url':'notes/addNote',
+          'url':'tag/addTag',
           'data':{
-            'user_id':user_id,
-            'money':this.money,
-            'type':this.type,
-            'remark':this.remark,
-            'tag_id':this.tag_id,
-            'tag_name':(this.type==1)?this.tagIn[this.tag_id]:this.tagOut[this.tag_id]
+            'user_id':localStorage.getItem('user_id'),
+            'tag_name':this.tag_name,
+            'type':this.type
           }
         };
         API.PostRequest(this,params,(data) => {

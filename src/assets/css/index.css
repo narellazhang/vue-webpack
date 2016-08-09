@@ -16,3 +16,9 @@
 .text-warning{
 	color: #ff6600!important;
 }
+.fr{
+	float: right;
+}
+.fl{
+	float: left;
+}
