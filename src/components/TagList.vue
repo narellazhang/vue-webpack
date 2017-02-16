@@ -16,7 +16,7 @@
         </div>
         <div class="content-block">
             <div class="tabs">
-                <div id="tab2" class="tab">
+                <div id="tab2" class="tab active">
                     <div class="list-block media-list" v-if="tagIn">
                         <ul>
                             <li v-for="item in tagIn">
@@ -91,7 +91,7 @@
   export default {
 
     data() {
-      this.getQuote();
+      this.getTag();
       return {
         tagIn:'',
         tagOut:'',
@@ -99,7 +99,7 @@
     },
     methods: {
      
-      getQuote() {
+      getTag() {
         var user_id = localStorage.getItem('user_id');
         if(!user_id){
            alert('登陆失效，请重新登陆');
@@ -146,7 +146,7 @@
          if(data.code==200){
               this.items = _.dropWhile(this.items, function(o) { return o.id==id }); 
               alert(data.msg);
-              router.go('home')
+              router.go('tag')
 
             }
 

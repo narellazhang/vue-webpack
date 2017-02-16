@@ -7,7 +7,7 @@ export default {
     var h = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours())+ ':';
     var m = (date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes())+ ':';
     var s = date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds();
-    return (Y+M+D+h+m+s); //呀麻碟
+    return (Y+M+D+h+m+s); 
     // 输出结果：2014-04-23 18:55:49
   }
 }

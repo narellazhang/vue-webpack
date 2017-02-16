@@ -9,7 +9,11 @@ module.exports = {
     publicPath: 'build/',
     filename: 'build.js'
   },
-
+  resolve: {
+        alias: {
+          chart :'chartjs'
+        }
+      },
   module: {
     loaders: [
       // process *.vue files using vue-loader
@@ -36,11 +40,16 @@ module.exports = {
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: "file-loader"
-      }
+      }/*, {
+        test: require.resolve('zepto'),
+        loader: 'exports?window.Zepto!script'
+      }*/
 
     ]
   },
-
+  externals: {
+  'zepto': 'Zepto'
+  },
   babel: {
     presets: ['es2015'],
     plugins: ['transform-runtime']

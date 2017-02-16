@@ -78,7 +78,7 @@
         API.PostRequest(this,params,(data) => {
           if(data.code==200){
             alert(data.msg)
-            router.go('home')
+            router.go('tag')
           }
           
 

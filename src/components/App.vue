@@ -29,7 +29,7 @@
 
   <script>
   require('../assets/css/index.css');
-
+  import $ from 'zepto'
   import auth from '../auth/api'
 
 

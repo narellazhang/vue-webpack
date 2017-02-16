@@ -4,14 +4,19 @@ import Vue from 'vue'
 import App from './components/App.vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+/*import VueCharts from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'*/
+import Chart from 'chartjs'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 import auth from './auth/api'
-
 // Check the users auth status when the app starts
 auth.checkAuth()
 
-export var router = new VueRouter()
+export var router = new VueRouter({hashbang: true,
+  history: true,
+  saveScrollPosition: true,
+  suppressTransitionError: true})
 
 // Set up routing and match routes to components
 //函数返回的这种模式是动态载入组件

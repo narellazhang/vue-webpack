@@ -44,14 +44,11 @@
             <div class="item-input">
               <!-- <input type="text" v-model="type" id="picker"> -->
               <select name="tag" v-model="tag_id" v-show="type==0">
-                <option value="1">生活必需品</option>
-                <option value="2">娱乐</option>
-                <option value="3">衣服鞋包</option>             
+                <option  v-for="item in tagOut" value="{{item.id}}">{{item.tag_name}}</option>
+               
               </select>
               <select name="tag" v-model="tag_id" v-show="type==1">
-                <option value="1">工资</option>
-                <option value="2">投资理财</option>
-                <option value="3">意外收入</option>             
+                 <option  v-for="item in tagIn" value="{{item.id}}">{{item.tag_name}}</option>      
               </select>
             </div>
           </div>
@@ -89,24 +86,50 @@
   import {router} from '../index'
   export default {
     data() {
+      this.getTag();
       return {
           money: '',
           type: '',
           remark: '',
           tag_id:'',
-          tagOut : {
-            '1':'生活必需品',
-            '2':'娱乐',
-            '3':'衣服鞋包'
-          },
-          tagIn:{
-            '1':'工资',
-            '2':'投资理财',
-            '3':'意外收入'
-          }
+          tagOut : '',
+          tagIn:''
       }
     },
     methods: {
+       getTag() {
+        var user_id = localStorage.getItem('user_id');
+        if(!user_id){
+           alert('登陆失效，请重新登陆');
+           router.go('login')
+
+        }
+        var paramIn = {
+          'url':'tag/queryByType',
+          'data':{
+            'user_id':user_id,
+            'type':1
+          }
+        }
+        API.GetRequest(this,paramIn,(data) => {
+          if(data&&data.length>0){
+            this.tagIn = data;
+          }
+        });
+        var paramOut = {
+          'url':'tag/queryByType',
+          'data':{
+            'user_id':user_id,
+            'type':0
+          }
+        }
+        API.GetRequest(this,paramOut,(data) => {
+          if(data&&data.length>0){
+            this.tagOut = data;
+          }
+        });
+         
+      },
       submit() {
         var user_id = localStorage.getItem('user_id');
         if(!user_id){

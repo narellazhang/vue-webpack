@@ -14,6 +14,12 @@
                         <div class="item-title">编辑标签</div>
                     </div>
                 </li>
+                  <li class="item-content item-link" v-link="'/statistics'">
+                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title">统计数据</div>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="content-block-title"></div>
